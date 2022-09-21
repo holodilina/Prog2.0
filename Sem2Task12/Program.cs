@@ -14,7 +14,7 @@ int inputNumberB = 0;
 bool result = false;
 
 // Получаем два числа от пользователя
-void ReadData();
+void ReadData()
 {
    Console.WriteLine("Введите первое число: ");
    string? inputLineA = Console.ReadLine();
@@ -26,15 +26,15 @@ void ReadData();
 }
 
 // Определяем кратность чисел
-void ConculateDate(); // вычисление
+void ConculateDate() // вычисление
 {
 result = (inputNumberB % inputNumberA == 0);
 }
 
 // Выводим данные программы вычисления
-void PrintData(); // вывод данных
+void PrintData() // вывод данных
 {
-if (result)
+if(result)
 {
     Console.WriteLine("Второе число кратно первому");
 }
@@ -43,7 +43,6 @@ else
     Console.WriteLine("Остаток от деления: "  + inputNumberB % inputNumberA);
 }
 }
-
 
 
 /* // Вариант Константина
