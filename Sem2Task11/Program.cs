@@ -6,6 +6,8 @@
 // int firstDigit = number / 100;
 // int thirdDigit = number % 10;
 
+
+
 //Вариант Евгения
 void Variant2()
 {
