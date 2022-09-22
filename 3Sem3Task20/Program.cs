@@ -31,4 +31,3 @@ void PrintResult(string line)
 
 // округление значения до какой-то цифры до запятой, например, до 2-й
 PrintResult(Math.Round(CalcData(x1, y1, x2, y2), 2).ToString());
-
