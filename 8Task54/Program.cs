@@ -1,35 +1,85 @@
 ﻿// Задайте двумерный массив.
 // Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
 
-using namespace std;
-void main()
+var mass = InputMass();
+
+if(mass==null)
 {
-    srand(time(0));
-    const int raw = 13, col = 24;
-    int a [raw] [col];
-    for (int i = 0; i < raw; i++)
+    Console.WriteLine("Неверный ввод");
+    return;
+}
+
+SortMass(mass);
+PrintMass(mass);
+
+int[,]? InputMass()
+{
+    Console.Write("Введите размер двухмерного массива N,M:");
+    
+    var sizeInput = Console.ReadLine();
+    if(string.IsNullOrWhiteSpace(sizeInput)) 
+        return null; 
+
+    var sizeArry = sizeInput.Split(',');
+    if(sizeArry.Length!=2)
+        return null; 
+
+    int n=0, m=0;
+    if(!int.TryParse(sizeArry[0].Trim(), out n))
+        return null; 
+
+    if(!int.TryParse(sizeArry[1].Trim(), out m))
+        return null; 
+
+    var res = new int[n,m]; 
+    Console.WriteLine($"Ввведите {n} строк, числа в строчках через запятую");
+    for(var i=0;i<n;i++)
     {
-        for (int j = 0; j < col; j++)
+        var lineInput = Console.ReadLine();
+        if(string.IsNullOrWhiteSpace(lineInput)) 
+            return null;        
+        var lineArry = lineInput.Split(',');
+        if(lineArry.Length!=m)
+            return null;
+        for(var i2=0;i2<m;i2++) 
         {
-            a [i] [j] = rand() % 10;
-            count << a [i] [j] << " ";
+            int a;
+            if(!int.TryParse(lineArry[i2].Trim(), out a))
+                return null;       
+            res[i,i2]=a;  
         }
-    count << "\n";
     }
-    count << "\n";
-    for (int i = 0; i < raw; i++)
+    return res;
+}  
+
+void SortMass(int[,] mass)
+{ 
+    for(int i=0; i<mass.GetLength(0);i++)
     {
-        for (int j = 0; j < col; j++)
-            {
-                for (int k = col - 1; k > ij; k--);
-                if (a[i] [k] < a [i] [k-1])
-                    {
-                        int tmp = a [i] [k];
-                        a [i] [k] = a [i] [k-1];
-                        a [i] [k-1] = tmp;
-                    }
-                    cout << a [i] [j] << " ";
-                }
-            cout << "\n";
-            }
-        }
+        for(int i2=mass.GetLength(1); i2>1;i2--)
+        {
+          for(int i3=0; i3<i2-1;i3++)
+          {
+             if(mass[i, i3]<mass[i, i3+1]) 
+             {
+                var next=mass[i, i3+1];
+                mass[i, i3+1]=mass[i, i3];
+                mass[i, i3]=next;
+             }      
+          }          
+        }     
+    } 
+}
+
+void PrintMass(int[,] mass)
+{
+    Console.WriteLine("Результат");
+    for(int i=0; i<mass.GetLength(0);i++)
+    {
+        for(int i2=0; i2<mass.GetLength(1);i2++)
+        {
+            Console.Write($"{mass[i, i2]}\t");
+        }  
+        Console.WriteLine();             
+    }
+}
